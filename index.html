@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <style>
+        *{
+            font-size: 1.2rem;
+            /* color: white; */
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            width: 90vw;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid black;
+            margin: auto;
+            border-radius: 15px;
+        }
+        .container::before{
+            content: " ";
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            z-index: -9;
+            background: url(https://i.pinimg.com/736x/6d/f9/f9/6df9f905a2f32d50a729adf1bc23d432.jpg) center center / cover no-repeat;
+
+        }
+        #nota{
+            position: fixed;
+        }
+        .black{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container black" id="maindiv">
+        <h2>Welcome</h2>
+        <p>
+            <h5>Your notes</h5>
+            <ul id="nota">
+
+            </ul>
+        </p>
+        <p>
+            <h5>Add new note here</h5>
+            <input type="text" id="input" class=" black" >
+            <button class="btn black" onclick="addfunc()">Add</button>
+            <button class="btn black" onclick="removefunc()">Delete</button>
+        </p>
+    </div>
+</body>
+<script>
+    let note = document.getElementById('nota');
+    // let inp2 = `"`+inp+`"`;
+    
+    const addfunc = ()=>{
+        let inp = document.getElementById('input').value;
+        localStorage.setItem("notes", JSON.stringify(inp));
+        let notes0 = localStorage.getItem("notes");
+        if(notes0!=null){
+            
+            note.innerHTML = `<li>${notes0}</li>`
+        };
+    };
+    const removefunc = ()=>{
+        localStorage.removeItem("notes");  
+            note.innerHTML = "";
+    }
+</script>
+</html>
