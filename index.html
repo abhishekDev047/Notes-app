@@ -38,13 +38,20 @@
         .black{
             color: black;
         }
+        .small{
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            border: 2px solid black;
+            border-radius: 25px;
+        }
     </style>
 </head>
 <body>
     <div class="container black" id="maindiv">
         <h2>Welcome</h2>
         <p>
-            <h5>Your notes</h5>
+            <h5>Your notes <button class="small" onclick="loadfunc()">0</button></h5>
             <ul id="nota">
 
             </ul>
@@ -58,6 +65,10 @@
     </div>
 </body>
 <script>
+
+  setTimeout(() => {
+    alert("to load your previous notes please tap on that '0' button next to ' your notes'")
+  }, 5000);
     let note = document.getElementById('nota');
     // let inp2 = `"`+inp+`"`;
     
@@ -73,6 +84,14 @@
     const removefunc = ()=>{
         localStorage.removeItem("notes");  
             note.innerHTML = "";
+    }
+
+    const loadfunc = ()=>{
+        let notes0 = localStorage.getItem("notes");
+        if(notes0!=null){
+            
+            note.innerHTML = `<li>${notes0}</li>`
+        };
     }
 </script>
 </html>
